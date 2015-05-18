@@ -1,0 +1,40 @@
+OASISFormat: 0.4
+Name:        wshiml
+Version:     0.1.0
+Synopsis:    Near-duplicate document detection by word shingling
+Authors:     Kevin Brubeck Unhammer
+License:     LGPL-2.1 with OCaml linking exception
+BuildTools:  ocamlbuild
+Plugins:     META (0.4), DevFiles (0.4)
+
+Description: Near-duplicate document detection by word shingling; library and example command line program.
+Homepage:    https://github.com/unhammer/wshiml
+
+Library "wshiml"
+  Path:       src
+  Modules:    Wshiml
+  InternalModules: Ymse
+
+Flag "cli"
+  Description: Install example command line program to find similar docs
+  Default: false
+
+Executable "find-similar-docs"
+  Build$: flag(cli)
+  Install$: flag(cli)
+  Path:       examples
+  MainIs:     find_similar_docs.ml
+  BuildDepends: wshiml, cmdliner
+  CompiledObject: best
+
+
+AlphaFeatures: ocamlbuild_more_args
+
+Document "wshiml_api"
+  Type: ocamlbuild (0.4)
+  BuildTools: ocamldoc
+  Title: API reference for Wshiml
+  XOCamlbuildPath: .
+  XOCamlbuildExtraArgs:
+    "-docflags '-colorize-code -short-functors -charset utf-8'"
+  XOCamlbuildLibraries: wshiml
