@@ -28,6 +28,20 @@ Executable "find-similar-docs"
   CompiledObject: best
 
 
+Executable "run_qcheck"
+  Path:             tests/
+  Install:          false
+  CompiledObject:   native
+  Build$:           flag(tests)
+  MainIs:           run_qcheck.ml
+  BuildDepends:     wshiml, qcheck
+
+Test all
+  Command:      $run_qcheck
+  TestTools:    run_qcheck
+  Run$:         flag(tests)
+
+
 AlphaFeatures: ocamlbuild_more_args
 
 Document "wshiml_api"
