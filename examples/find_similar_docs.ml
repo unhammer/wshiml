@@ -58,6 +58,10 @@ let info =
     `P "The output is tab-separated, one cluster per line.";
     `P "Note that the comparison is probabilistic, and results may
         differ between runs.";
+    `S "EXAMPLES";
+    `P "find . -type f -size -50k -print0 | xargs -0 $(tname) -s";
+    `P "Find similar documents among small files under the current
+        directory; use super-shingling to speed things up.";
     `S "BUGS";
     `P "Email bug reports to <unhammer at fsfe.org>.";
   ] in

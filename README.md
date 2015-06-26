@@ -27,7 +27,7 @@ http://nlp.stanford.edu/IR-book/html/htmledition/near-duplicates-and-shingling-1
 and uses 12s (9s with super-shingling) to cluster 1458 documents of
 altogether 556176 words on an old 2.8 GHz AMD.
 
-Documentation
-=============
+API documentation
+=================
 
 is [here](http://unhammer.github.io/wshiml/).
