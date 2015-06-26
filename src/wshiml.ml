@@ -97,9 +97,14 @@ let pi r hash = r lxor hash
 
 (* Randomiser and the minimal element of the random-permuted hash *)
 type minpi = int * int
+
 let min_pi hashes r =
-  let min_elt = List.map (pi r) hashes
-                |> List.min_elt max_int
+  let min_elt =
+    List.fold_left (fun min_elt hash ->
+        let elt = pi r hash in
+        if elt < min_elt then elt else min_elt)
+      max_int
+      hashes
   in
   (r, min_elt)
 
