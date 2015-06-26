@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Wshiml" rel="Chapter" href="Wshiml.html"><title>Wshiml</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_Wshiml.html">Wshiml</a></h1>
+
+<pre><span class="keyword">module</span> Wshiml: <code class="code"><span class="keyword">sig</span></code> <a href="Wshiml.html">..</a> <code class="code"><span class="keyword">end</span></code></pre><div class="info module top">
+Word shingling for near duplicate document detection.<br>
+</div>
+<hr width="100%">
+
+<pre><span id="TYPEsketch"><span class="keyword">type</span> <code class="type"></code>sketch</span> </pre>
+<div class="info ">
+A sketch of one document. A sketch is the set of minimal elements
+    that result from xor-ing the hash of shingles with a list of
+    random hashes.<br>
+</div>
+
+
+<pre><span id="TYPEsketchdocs"><span class="keyword">type</span> <code class="type"></code>sketchdocs</span> = <code class="type">(<a href="Wshiml.html#TYPEsketch">sketch</a> * int) list</code> </pre>
+<div class="info ">
+List of sketched documents – the second part of the tuple is a
+    document ID.<br>
+</div>
+
+
+<pre><span id="TYPEtokeniser"><span class="keyword">type</span> <code class="type"></code>tokeniser</span> = <code class="type">bytes -> bytes list</code> </pre>
+<div class="info ">
+The functions taking documents let you specify your own tokeniser.
+    If a tokeniser is not provided, a very simple
+    whitespace/punctuation tokeniser is used.<br>
+</div>
+
+<br>
+The <code class="code">n</code> in the below functions is the number of shingles to use;
+    defaults to 4.<br>
+
+<pre><span id="VALcompare_docs"><span class="keyword">val</span> compare_docs</span> : <code class="type">?tokenise:<a href="Wshiml.html#TYPEtokeniser">tokeniser</a> -> ?n:int -> bytes -> bytes -> float</code></pre><div class="info ">
+Compares two documents "exactly", by taking the Jacquard
+    coefficient of the shingles themselves.<br>
+</div>
+
+<pre><span id="VALsketch_of_doc"><span class="keyword">val</span> sketch_of_doc</span> : <code class="type">?tokenise:<a href="Wshiml.html#TYPEtokeniser">tokeniser</a> -> ?n:int -> bytes -> <a href="Wshiml.html#TYPEsketch">sketch</a></code></pre>
+<pre><span id="VALsketch_docs"><span class="keyword">val</span> sketch_docs</span> : <code class="type">?tokenise:<a href="Wshiml.html#TYPEtokeniser">tokeniser</a> -><br>       ?n:int -> ?slurp_file:(bytes -> bytes) -> bytes list -> <a href="Wshiml.html#TYPEsketchdocs">sketchdocs</a></code></pre><div class="info ">
+</div>
+<div class="param_info"><code class="code">slurp_file</code> : If provided, called on each document before processing (lets you pass a list of filenames instead of a list of the full documents).</div>
+
+<pre><span id="VALsupersketches"><span class="keyword">val</span> supersketches</span> : <code class="type">?n:int -> <a href="Wshiml.html#TYPEsketchdocs">sketchdocs</a> -> <a href="Wshiml.html#TYPEsketchdocs">sketchdocs</a></code></pre>
+<pre><span id="TYPEscoreddocs"><span class="keyword">type</span> <code class="type"></code>scoreddocs</span> = <code class="type">((int * int) * int) list</code> </pre>
+<div class="info ">
+Document-pair (as indices) to score.<br>
+</div>
+
+
+<pre><span id="VALscore_sketches"><span class="keyword">val</span> score_sketches</span> : <code class="type">?threshold:float -> <a href="Wshiml.html#TYPEsketchdocs">sketchdocs</a> -> <a href="Wshiml.html#TYPEscoreddocs">scoreddocs</a></code></pre>
+<pre><span id="TYPEclusters"><span class="keyword">type</span> <code class="type"></code>clusters</span> = <code class="type">int list list</code> </pre>
+<div class="info ">
+List of clusters; documents referred to by their index in the
+    original list.<br>
+</div>
+
+
+<pre><span id="VALcluster_scores"><span class="keyword">val</span> cluster_scores</span> : <code class="type">?ndocs:int -> <a href="Wshiml.html#TYPEscoreddocs">scoreddocs</a> -> <a href="Wshiml.html#TYPEclusters">clusters</a></code></pre><div class="info ">
+</div>
+<div class="param_info"><code class="code">ndocs</code> : Number of documents. If not provided, uses the highest index in <code class="code">scoreddocs</code>.</div>
+</body></html>

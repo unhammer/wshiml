@@ -1,0 +1,28 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Wshiml" rel="Chapter" href="Wshiml.html"><title>Wshiml</title>
+</head>
+<body>
+<code class="code"><span class="keyword">sig</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;sketch<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;sketchdocs&nbsp;=&nbsp;(<span class="constructor">Wshiml</span>.sketch&nbsp;*&nbsp;int)&nbsp;list<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;tokeniser&nbsp;=&nbsp;bytes&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bytes&nbsp;list<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;compare_docs&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;?tokenise:<span class="constructor">Wshiml</span>.tokeniser&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;?n:int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bytes&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bytes&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;sketch_of_doc&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;?tokenise:<span class="constructor">Wshiml</span>.tokeniser&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;?n:int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bytes&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Wshiml</span>.sketch<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;sketch_docs&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;?tokenise:<span class="constructor">Wshiml</span>.tokeniser&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;?n:int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;?slurp_file:(bytes&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bytes)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bytes&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Wshiml</span>.sketchdocs<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;supersketches&nbsp;:&nbsp;?n:int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Wshiml</span>.sketchdocs&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Wshiml</span>.sketchdocs<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;scoreddocs&nbsp;=&nbsp;((int&nbsp;*&nbsp;int)&nbsp;*&nbsp;int)&nbsp;list<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;score_sketches&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;?threshold:float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Wshiml</span>.sketchdocs&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Wshiml</span>.scoreddocs<br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;clusters&nbsp;=&nbsp;int&nbsp;list&nbsp;list<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;cluster_scores&nbsp;:&nbsp;?ndocs:int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Wshiml</span>.scoreddocs&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Wshiml</span>.clusters<br>
+<span class="keyword">end</span></code></body></html>
