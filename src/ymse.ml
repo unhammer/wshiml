@@ -11,15 +11,6 @@ module List = struct
     in
     aux n [] l
     |> rev
-
-  let allpairs l =
-    let rec aux seen acc = function
-    | a::tl -> let with_a = List.map (fun e -> (e,a)) seen in
-        aux (a::seen) (with_a::acc) tl
-    | [] -> acc
-    in
-    aux [] [] l
-    |> List.concat
 end
 
 module Cset = Set.Make(Char)

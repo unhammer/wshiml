@@ -158,12 +158,20 @@ let pimap_of_sketches sketches =
 
 (* … and then we reverse that to a map from document-pairs to the
    number of shingles they have in common:*)
+let bump_dupes minpi docs map =
+  let rec aux map = function
+    | [] -> map
+    | d::docs ->
+      let map = List.fold_left (fun map d' ->
+          let c = Couple.create (d, d') in
+          DupeMap.bump map c
+        ) map docs
+      in aux map docs
+  in
+  aux map docs
+
 let dupescore_of_pimap pimap =
-  PiMap.fold (fun minpi docs map ->
-      List.allpairs docs
-      |> List.map Couple.create
-      |> List.fold_left DupeMap.bump map
-    ) pimap DupeMap.empty
+  PiMap.fold bump_dupes pimap DupeMap.empty
   |> DupeMap.bindings
   |> List.sort (fun (_,c1) (_,c2) -> compare c2 c1)
 
