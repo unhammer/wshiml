@@ -12,11 +12,6 @@ module List = struct
     aux n [] l
     |> rev
 
-  let rec min_elt min = function
-    | [] -> min
-    | (hd::tl) when hd < min -> min_elt hd tl
-    | (_::tl) -> min_elt min tl
-
   let allpairs l =
     let rec aux seen acc = function
     | a::tl -> let with_a = List.map (fun e -> (e,a)) seen in
