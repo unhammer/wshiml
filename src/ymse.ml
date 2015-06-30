@@ -1,16 +1,15 @@
 
 module List = struct
   include List
-  let take n l =
-    let rec aux n acc = function
-    | [] -> acc
-    | hd::tl ->
-        if n > 0 then
-          aux (n-1) (hd::acc) tl
-        else acc
+
+  let take_rev n l =
+    let rec aux acc = function
+      | 0, [] -> [] (* trying to take more than what's there: give nothing *)
+      | n, [] -> acc
+      | 0, _ -> acc
+      | n, hd::tl -> aux (hd::acc) ((n-1),tl)
     in
-    aux n [] l
-    |> rev
+    aux [] (n, l)
 end
 
 module Cset = Set.Make(Char)

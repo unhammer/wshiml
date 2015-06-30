@@ -24,8 +24,8 @@ software has no dependencies apart from Oasis for building from git.
 So far the code is fairly unoptimised apart from what's described
 in
 http://nlp.stanford.edu/IR-book/html/htmledition/near-duplicates-and-shingling-1.html
-and uses 8s (6s with super-shingling) to cluster 850 documents of
-altogether 462,572 words on an old 2.8 GHz AMD.
+and uses 7s (4s with super-shingling) to cluster 1100 documents of
+altogether 766,937 words on an old 2.8 GHz AMD.
 
 API documentation
 =================

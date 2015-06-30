@@ -43,10 +43,10 @@ let jacquard_hash s1 s2 =
 
 let shingles n l =
   let rec aux todo acc =
-    if List.length todo <= n then
-      todo::acc
-    else let shingle = List.take n todo in
-      aux (List.tl todo) (shingle::acc)
+    let shingle = List.take_rev n todo in
+    match shingle with
+    | [] -> acc
+    | _ -> aux (List.tl todo) (shingle::acc)
   in
   aux l []
 
