@@ -21,6 +21,10 @@ The command-line program requires
 [cmdliner](http://erratique.ch/software/cmdliner). The rest of the
 software has no dependencies apart from Oasis for building from git.
 
+On Debian/Ubuntu, you can install all build dependencies with
+
+    sudo apt install oasis libcmdliner-ocaml-dev
+
 So far the code is fairly unoptimised apart from what's described
 in
 http://nlp.stanford.edu/IR-book/html/htmledition/near-duplicates-and-shingling-1.html
