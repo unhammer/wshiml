@@ -20,8 +20,13 @@ let print_clusters (files: bytes array) (clusters: Wshiml.clusters) =
 let print_scores =
   List.iter (fun ((d1,d2),score) -> Printf.printf "%d & %d = %d\n" d1 d2 score)
 
+let warn_on_dir =
+  List.iter (fun (f) -> if Sys.is_directory f then (
+    Printf.eprintf "find-similar-docs: '%s' is a directory, expected files.\nTry e.g. \n    find . -type f -print0 | xargs -0 find-similar-docs -s\n" f;
+    exit(1)))
 
 let find_similar_docs threshold super files =
+  warn_on_dir files;
   let files_a = Array.of_list files in
   let ndocs = Array.length files_a in
   Wshiml.sketch_docs ~slurp_file files
